@@ -1,10 +1,50 @@
-const Discord = require("discord.js");
-const config = require("./assets/config.json");
+var leetTable =
+    {
+        "a" : ["a" , "@", "A"],
+        "b" : ["b", "B"],
+        "c" : ["c", "C"],
+        "d" : ["d", "D", "0", "O"],
+        "e" : ["e", "E", "3"],
+        "f" : ["f", "F"],
+        "g" : ["g", "G", "9"],
+        "h" : ["h", "H"],
+        "i" : ["i", "I", "l"],
+        "j" : ["j", "J", "l"],
+        "k" : ["k", "K"],
+        "l" : ["l", "L", "I"],
+        "m" : ["m", "M"],
+        "n" : ["n", "N"],
+        "o" : ["o", "O", "0"],
+        "p" : ["p", "P"],
+        "q" : ["q", "Q"],
+        "r" : ["r", "R"],
+        "s" : ["s", "S", "5"],
+        "t" : ["t", "T"],
+        "u" : ["u", "U"],
+        "v" : ["v", "V"],
+        "w" : ["w", "W"],
+        "x" : ["x", "X"],
+        "y" : ["y", "Y"],
+        "z" : ["z", "Z"]
+    }
+    // z
 
-const client = new Discord.Client(); //{fetchAllMembers: true})
 
-const leetTable = require("./assets/leetTable.json").table;
-const badWords  = require("./assets/badWords.json");
+var badWords = 
+[
+    "fag",
+
+    "faggot",
+    "faggit",
+
+    "fagot",
+    "fagit",
+
+    "tranny",
+    "nigger",
+    "nigge",
+    "nigga"
+];
 
 var varients = [];
 
@@ -27,26 +67,34 @@ function allPossibleCases(arr) {
       }
 }
 
-function generateVarients() {
-    badWords.forEach(word => {
-        var i = 0;
-        var tmp = [];
-        word.split('').forEach(letter => {
-            tmp.push(leetTable[letter]);
-            i++;
-        })
-        //console.log(tmp);
-        var r=allPossibleCases(tmp);
-        r.forEach(vari => {
-            varients.push(vari);
-        })
+badWords.forEach(word => {
+    var i = 0;
+    var tmp = [];
+    word.split('').forEach(letter => {
+        tmp.push(leetTable[letter]);
+        i++;
     })
-    
-    return(`Generated: ${varients.length} word varients!`);
-    
-}
+    //console.log(tmp);
+    var r=allPossibleCases(tmp);
+    r.forEach(vari => {
+        varients.push(vari);
+    })
+})
 
-console.log(generateVarients());
+//console.log(varients);
+console.log(`Generated: ${varients.length} word varients!`);
+
+
+ //outputs ["acd", "bcd", "azd", "bzd", "ace", "bce", "aze", "bze", "acf", "bcf", "azf", "bzf"]
+
+//fag
+//fagget
+
+
+const Discord = require("discord.js");
+const config = require("./config.json");
+
+const client = new Discord.Client(); //{fetchAllMembers: true})
 
 // Bot status
 client
